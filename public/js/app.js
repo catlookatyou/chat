@@ -2053,7 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log("event recive");
       console.log(e);
 
-      _this3.messages.push(e.message);
+      _this3.messages.push(e);
     });
   }
 });

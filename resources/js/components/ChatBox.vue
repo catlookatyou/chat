@@ -56,7 +56,7 @@
             Echo.join(`chat.${roomId}`).listen('.message.sent', (e) => {
                         console.log("event recive");
                         console.log(e);
-                        this.messages.push(e.message);
+                        this.messages.push(e);
                     });
             }
     }
