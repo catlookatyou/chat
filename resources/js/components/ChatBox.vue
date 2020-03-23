@@ -16,7 +16,7 @@
         data() {
             return {
                 text: '',
-                roomId: '',
+                roomId: roomId,
                 messages: []
             }
         },
@@ -34,8 +34,7 @@
             }
         },
         created() {
-            var roomId = 1;
-            axios.get('/getAll?roomId='+roomId).then(({data}) => {
+            axios.get('/getAll?roomId='+ this.roomId).then(({data}) => {
                 this.messages = data;
             });
 
@@ -45,15 +44,14 @@
                     this.messages.push(e.message);
                     console.log(e.message);
                 });*/
-            Echo.join('chat.${roomId}')
+            Echo.join('chat.${this.roomId}')
                 .here((users) => {
                         console.log(users);
-                    })
-                
+                    })   
+               
         },
-        mounted() {
-            var roomId = 1;
-            Echo.join(`chat.${roomId}`).listen('.message.sent', (e) => {
+        mounted() { 
+            Echo.join(`chat.${this.roomId}`).listen('.message.sent', (e) => {
                         console.log("event recive");
                         console.log(e);
                         this.messages.push(e);

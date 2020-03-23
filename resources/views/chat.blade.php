@@ -11,11 +11,14 @@
 
         {{-- Script hosted on running laravel-echo-server --}}
         <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+        <script>    
+            var roomId = {{ $room_id }};       
+        </script>
     </head>
     <body>
         <div class="content">
             <div id="app">
-                <chatbox></chatbox>
+                <chatbox :roomId = roomId></chatbox>
             </div>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>

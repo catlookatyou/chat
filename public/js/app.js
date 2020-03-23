@@ -2004,7 +2004,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       text: '',
-      roomId: '',
+      roomId: roomId,
       messages: []
     };
   },
@@ -2029,8 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    var roomId = 1;
-    axios.get('/getAll?roomId=' + roomId).then(function (_ref2) {
+    axios.get('/getAll?roomId=' + this.roomId).then(function (_ref2) {
       var data = _ref2.data;
       _this2.messages = data;
     });
@@ -2041,15 +2040,14 @@ __webpack_require__.r(__webpack_exports__);
             console.log(e.message);
         });*/
 
-    Echo.join('chat.${roomId}').here(function (users) {
+    Echo.join('chat.${this.roomId}').here(function (users) {
       console.log(users);
     });
   },
   mounted: function mounted() {
     var _this3 = this;
 
-    var roomId = 1;
-    Echo.join("chat.".concat(roomId)).listen('.message.sent', function (e) {
+    Echo.join("chat.".concat(this.roomId)).listen('.message.sent', function (e) {
       console.log("event recive");
       console.log(e);
 
