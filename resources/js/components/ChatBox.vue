@@ -1,9 +1,10 @@
 <template>
     <div>
         <!--<textarea class="form-control"  rows="20" readonly="">{{messages.join('\n')}}</textarea>-->
-        <ul class="list-group">
-            <li v-for="{name, content} in messages">{{ name }}:{{ content }}</li>
-        </ul>
+        
+        <virtual-list :size="40" :remain="8">
+            <li class="message" v-for="{name, content} in messages">{{ name }}:{{ content }}</li>
+        </virtual-list>
 
         <hr>
         <input v-model="text">
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+    import virtualList from 'vue-virtual-scroll-list'
     export default {
         data() {
             return {

@@ -17,11 +17,6 @@ class MessagesController extends Controller
         return $room_id;
     }
 
-    public function allUsers(){
-        $users =  User::all();
-        return View::make('users', compact('users'));
-    }
-
     public function chat($user_b_id){
         $user_a_id = Auth::id();
 

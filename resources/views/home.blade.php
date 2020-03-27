@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">find a user and start to chat!</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach($users as $user)
+                        <li>
+                            <a href="{{ route('chat', ['user_b_id' => $user->id]) }}">{{ $user->name }}</a>
+                        </li>
+                    @endforeach
                 </div>
             </div>
         </div>

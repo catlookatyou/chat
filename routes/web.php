@@ -26,14 +26,13 @@ Route::get('/sent', function () {
 
 Auth::routes();
 
-Route::get('/users', 'MessagesController@allUsers')->name('allUsers');
-Route::get('/getRoomId', 'MessagesController@getRoomId')->name('getRoomId');
-
-Route::get('/chat/{user_b_id}', 'MessagesController@chat')->name('chat');
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/getRoomId', 'MessagesController@getRoomId')->name('getRoomId');
+
+Route::get('/chat/{user_b_id}', 'MessagesController@chat')->name('chat');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

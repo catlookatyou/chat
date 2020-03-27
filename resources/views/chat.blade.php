@@ -1,26 +1,23 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
+    <script>var roomId = {{ $room_id }};</script>
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-chat-scroll/dist/vue-chat-scroll.min.js"></script>
 
-        <title>Anonymous Chat App</title>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">start chatting!</div>
 
-        {{-- Script hosted on running laravel-echo-server --}}
-        <script src="//{{ Request::getHost() }}:6001/socket.io/socket.io.js"></script>
-        <script>    
-            var roomId = {{ $room_id }};       
-        </script>
-    </head>
-    <body>
-        <div class="content">
-            <div id="app">
-                <chatbox :roomId = roomId></chatbox>
+                <div class="card-body">
+                    <chatbox :roomId = roomId></chatbox>
+                </div>
+                </div>
             </div>
         </div>
-        <script src="{{ mix('js/app.js') }}"></script>
-    </body>
-</html>
+    </div>
+</div>
+@endsection
