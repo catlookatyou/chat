@@ -49043,6 +49043,7 @@ var render = function() {
             expression: "text"
           }
         ],
+        staticStyle: { width: "80%" },
         domProps: { value: _vm.text },
         on: {
           input: function($event) {
@@ -49060,7 +49061,7 @@ var render = function() {
           attrs: { disabled: !_vm.contentExists },
           on: { click: _vm.postMessage }
         },
-        [_vm._v("submit")]
+        [_vm._v("💬")]
       )
     ],
     1

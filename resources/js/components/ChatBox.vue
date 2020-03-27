@@ -7,8 +7,8 @@
         </virtual-list>
 
         <hr>
-        <input v-model="text">
-        <button @click="postMessage" :disabled="!contentExists">submit</button>
+        <input style="width: 80%" v-model="text">
+        <button @click="postMessage" :disabled="!contentExists">💬</button>
     </div>
 </template>
 
