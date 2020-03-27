@@ -2003,6 +2003,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -49016,56 +49020,51 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c(
-        "virtual-list",
-        { attrs: { size: 40, remain: 8 } },
-        _vm._l(_vm.messages, function(ref) {
-          var name = ref.name
-          var content = ref.content
-          return _c("li", { staticClass: "message" }, [
-            _vm._v(_vm._s(name) + ":" + _vm._s(content))
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.text,
-            expression: "text"
-          }
-        ],
-        staticStyle: { width: "80%" },
-        domProps: { value: _vm.text },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.text = $event.target.value
-          }
-        }
+  return _c("div", [
+    _c(
+      "ul",
+      _vm._l(_vm.messages, function(ref) {
+        var name = ref.name
+        var content = ref.content
+        return _c("li", { staticClass: "message" }, [
+          _vm._v(_vm._s(name) + ": " + _vm._s(content))
+        ])
       }),
-      _vm._v(" "),
-      _c(
-        "button",
+      0
+    ),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
         {
-          attrs: { disabled: !_vm.contentExists },
-          on: { click: _vm.postMessage }
-        },
-        [_vm._v("💬")]
-      )
-    ],
-    1
-  )
+          name: "model",
+          rawName: "v-model",
+          value: _vm.text,
+          expression: "text"
+        }
+      ],
+      staticStyle: { width: "80%" },
+      domProps: { value: _vm.text },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.text = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        attrs: { disabled: !_vm.contentExists },
+        on: { click: _vm.postMessage }
+      },
+      [_vm._v("💬")]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

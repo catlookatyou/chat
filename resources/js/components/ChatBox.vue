@@ -2,9 +2,13 @@
     <div>
         <!--<textarea class="form-control"  rows="20" readonly="">{{messages.join('\n')}}</textarea>-->
         
-        <virtual-list :size="40" :remain="8">
-            <li class="message" v-for="{name, content} in messages">{{ name }}:{{ content }}</li>
-        </virtual-list>
+        <!--<virtual-list :size="40" :remain="8">
+            <li class="message" v-for="{name, content} in messages">{{ name }}: {{ content }}</li>
+        </virtual-list>-->
+
+        <ul>
+            <li class="message" v-for="{name, content} in messages">{{ name }}: {{ content }}</li>
+        </ul>
 
         <hr>
         <input style="width: 80%" v-model="text">
