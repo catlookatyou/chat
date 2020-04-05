@@ -67,14 +67,14 @@ class MessagesController extends Controller
         //sent_from
         $message->sent_from = Auth::id();
         //room_id
-        $room_id = 1;
-        $message->room_id = $room_id;
+        //$room_id = 1;
+        $message->room_id = Auth::user()->room_id;
         $message->save();
 
         //user
-        $user = Auth::user();
-        $user->room_id = 1;
-        $user->save();
+        //$user = Auth::user();
+        //$user->room_id = 1;
+        //$user->save();
         
         event(new MessageSent($message));
 
