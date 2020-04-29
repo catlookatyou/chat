@@ -24,5 +24,18 @@ class DatabaseSeeder extends Seeder
                 'password'=>bcrypt('12345678')
             ]
         ]);
+
+        DB::table('items')->insert([
+            [
+                'name' => 'cat photo',
+                'content' => 'book',
+                'price'=>99,
+            ],
+            [
+                'name' => 'dog book',
+                'content' => 'book',
+                'price'=>10
+            ]
+        ]);
     }
 }

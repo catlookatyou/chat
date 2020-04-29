@@ -29,13 +29,20 @@ Auth::routes();
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/getRoomId', 'MessagesController@getRoomId')->name('getRoomId');
-
-Route::get('/chat/{user_b_id}', 'MessagesController@chat')->name('chat');
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/post', 'MessagesController@post')->name('post');
+Route::get('/cart', 'ItemsController@cart')->name('cart');
+Route::get('/increase-one-item/{id}', 'ItemsController@increaseByOne');
+Route::get('/decrease-one-item/{id}', 'ItemsController@decreaseByOne');
+Route::get('/remove-item/{id}', 'ItemsController@removeItem');
+Route::get('/add-to-cart/{id}', 'ItemsController@AddToCart')->name('addcart');
+Route::get('/clear-cart', 'ItemsController@clearCart');
 
+Route::get('/orders', 'OrdersController@index')->name('orders');
+Route::get('/order/new', 'OrdersController@new');
+Route::post('/order/store', 'OrdersController@store');
+
+Route::get('/getRoomId', 'MessagesController@getRoomId')->name('getRoomId');
+Route::get('/chat/{user_b_id}', 'MessagesController@chat')->name('chat');
+Route::post('/post', 'MessagesController@post')->name('post');
 Route::get('/getAll', 'MessagesController@getAll')->name('getAll');
