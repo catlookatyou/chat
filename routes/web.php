@@ -41,6 +41,8 @@ Route::get('/clear-cart', 'ItemsController@clearCart');
 Route::get('/orders', 'OrdersController@index')->name('orders');
 Route::get('/order/new', 'OrdersController@new');
 Route::post('/order/store', 'OrdersController@store');
+Route::post('/callback', 'OrdersController@callback');
+Route::get('/success', 'OrdersController@redirectFromECpay');
 
 Route::get('/getRoomId', 'MessagesController@getRoomId')->name('getRoomId');
 Route::get('/chat/{user_b_id}', 'MessagesController@chat')->name('chat');
