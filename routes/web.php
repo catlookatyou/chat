@@ -38,6 +38,7 @@ Route::get('/remove-item/{id}', 'ItemsController@removeItem');
 Route::get('/add-to-cart/{id}', 'ItemsController@AddToCart')->name('addcart');
 Route::get('/clear-cart', 'ItemsController@clearCart');
 
+Route::get('/all_orders', 'OrdersController@orders');
 Route::get('/orders', 'OrdersController@index')->name('orders');
 Route::get('/order/new', 'OrdersController@new');
 Route::post('/order/store', 'OrdersController@store');

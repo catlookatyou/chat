@@ -18,4 +18,4 @@ use Illuminate\Http\Request;
 // Allows us to post new message
 //Route::post('/post', 'MessagesController@post')->name('post');
 
-Route::get('/orders', 'OrdersController@orders');
+//Route::get('/orders', 'OrdersController@orders');

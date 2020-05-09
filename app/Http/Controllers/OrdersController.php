@@ -59,9 +59,9 @@ class OrdersController extends Controller
             $obj->EncryptType = '1';                                                           //CheckMacValue加密類型，請固定填入1，使用SHA256加密
             //基本參數(請依系統規劃自行調整)
             $MerchantTradeNo = $uuid_temp ;
-            $obj->Send['ReturnURL']         = "https://47438d92.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['PeriodReturnURL']         = "https://47438d92.ngrok.io/callback" ;    //付款完成通知回傳的網址
-            $obj->Send['ClientBackURL'] = "https://47438d92.ngrok.io/success" ;    //付款完成通知回傳的網址
+            $obj->Send['ReturnURL']         = "https://d0abbcc3.ngrok.io/callback" ;    //付款完成通知回傳的網址
+            $obj->Send['PeriodReturnURL']         = "https://d0abbcc3.ngrok.io/callback" ;    //付款完成通知回傳的網址
+            $obj->Send['ClientBackURL'] = "https://d0abbcc3.ngrok.io/success" ;    //付款完成通知回傳的網址
             $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                          //訂單編號
             $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
             $obj->Send['TotalAmount']       = $cart->totalPrice;                        //交易金額
@@ -69,9 +69,21 @@ class OrdersController extends Controller
             $obj->Send['ChoosePayment']     = ECPayMethod::Credit ;              //付款方式:Credit
             $obj->Send['IgnorePayment']     = ECPayMethod::GooglePay ;           //不使用付款方式:GooglePay
             //訂單的商品資料
-            $order_name = request('name')."的訂單";
+            //$order_name = request('name')."的訂單";
+            //$cart = session()->get('cart');
+            $items = $cart->items; //constructor
+            $arr = [];
+            $order_name = '';
+            foreach($items as $item){
+                $info = $item['item']['name'].",".$item['price']."元"."×".$item['qty'];
+                $arr[] = $info;
+            }
+            foreach($arr as $item){
+                $order_name = $order_name.$item."#";
+            }
+
             array_push($obj->Send['Items'], array('Name' => $order_name, 'Price' => $cart->totalPrice,
-            'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+            'Currency' => "元", 'Quantity' => (int) "0", 'URL' => "dedwed"));
             //session()->forget('cart');
             $obj->CheckOut();
         } catch (Exception $e) {
