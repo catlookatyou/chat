@@ -18,36 +18,45 @@ class MessagesController extends Controller
     }
 
     public function chat($user_b_id){
-        $user_a_id = Auth::id();
+        if($user_b_id == 0){  //default page
+            $room_id = 0;
+            $users = User::all();
+        }else{
+            $user_a_id = Auth::id();
 
-        $room = Room::where('user_a_id', $user_a_id)
-                    ->where('user_b_id', $user_b_id)
-                    ->first();
+            //check if already had room
+            $room = Room::where('user_a_id', $user_a_id)
+                        ->where('user_b_id', $user_b_id)
+                        ->first();
 
-        if($room == null){
-            $room = Room::where('user_a_id', $user_b_id)
-                    ->where('user_b_id', $user_a_id)
-                    ->first();
+            if($room == null){
+                $room = Room::where('user_a_id', $user_b_id)
+                        ->where('user_b_id', $user_a_id)
+                        ->first();
+            }
+
+            //if no, create room
+            if($room == null)
+            {   
+                $room = new Room();
+                $room->user_a_id = $user_a_id;
+                $room->user_b_id = $user_b_id;
+                $room->save();
+            }
+
+            $user = Auth::user();
+            $user->room_id = $room->id;
+            $user->save();
+
+            $users = User::all();
+            $room_id = Auth::user()->room_id;
         }
-
-        if($room == null)
-        {   
-            $room = new Room();
-            $room->user_a_id = $user_a_id;
-            $room->user_b_id = $user_b_id;
-            $room->save();
-        }
-
-        $user = Auth::user();
-        $user->room_id = $room->id;
-        $user->save();
-
-        $room_id = Auth::user()->room_id;
-        return View::make('chat', compact('room_id'));
+        
+        return View::make('chat', compact('room_id', 'users'));
     }
 
     public function getAll(Request $request) {
-        //room_id
+        //get all messages in the room
         $room_id = $request->get('roomId');
         $messages = Message::where('room_id', $room_id)->get();
         foreach($messages as $message){
@@ -67,7 +76,6 @@ class MessagesController extends Controller
         //sent_from
         $message->sent_from = Auth::id();
         //room_id
-        //$room_id = 1;
         $message->room_id = Auth::user()->room_id;
         $message->save();
 
